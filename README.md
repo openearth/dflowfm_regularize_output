@@ -4,28 +4,24 @@ A program for converting DFlowFM map output to a regular spaced grid.
 
 **requirements:**
 * DFlowFM .map output
-* Yaml conda environment. Windows OS.
+* Yaml Conda environment. Windows OS.
 
-# Usage
+# Setting up code for modification and usage
 * Clone this repo with 
 ```bash
-git clone https://github.com/openearth/coastserv_flask_azure.git
+git clone https://github.com/openearth/dflowfm_regularize_output.git
 ```
 * In Anaconda Powershell
 ```bash
 conda env create --file environment.yml
+conda activate dfm_tools_env
 ```
-* Test the container on your local machine first with:
+# Run the test case
+* Copy the DFlowFM output from the P drive, or modify the code to read it from there. The test case is located at ```P:\11203850-coastserv\Handover_from_Wilms\Postprocessing```
+* Run the regularisation script:
 ```bash
-docker run -p 80:80 -v D:\PROJECTS\2021\COASTSERV_azure\FES\:/app/app/coastserv/static/FES coastserv.azurecr.io/coastserv:v6
+python nc2regularGrid_listComprehension.py
 ```
-Where you replace 'D:\PROJECTS\2021\COASTSERV_azure\FES\' with the path to your FES data.
-* In a browser, navigate to 'localhost:80' and run a test by using the test.pli file. 
-* If all looks well, push the FES data to Azure and deploy your app with:
-```bash
-./deploy.sh
-```
-* In a browser, navigate to coastserv.azurewebsites.net. This might take some time to start if it is the first time you're deploying the container.
-* If you make any changes to the code on your local machine, push the changes to Azure with redeploy.sh 
+*This will create an 'output' directory and within in it the stitched regular spaced NetCDF file.
 
 
